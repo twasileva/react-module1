@@ -1,9 +1,8 @@
 import PropTypes from 'prop-types'
-import css from './EventCard.module.css'
 import { formattedData } from 'utils/formattedData'
 import { durationTime } from 'utils/durationTime'
-import {FaMapMarkerAlt, FaUserAlt, FaCalendarAlt, FaClock} from 'react-icons/fa'
-console.log(FaMapMarkerAlt, FaUserAlt, FaCalendarAlt, FaClock);
+import { FaMapMarkerAlt, FaUserAlt, FaCalendarAlt, FaClock } from 'react-icons/fa'
+import {Card, CardName, Info,Chip} from './EventCard.styled'
 
 
 
@@ -12,28 +11,30 @@ export const EventCard = ({ name, location, speaker, type, start, end }) => {
   const duration = durationTime(start, end)
   
 return (
-    <div className={css.event}>
-    <h2 className={css.title}>{name}</h2>
-  <p className={css.info}>
-    <FaMapMarkerAlt className={css.icon}/>
+    <Card>
+    <CardName>{name}</CardName>
+  <Info>
+    <FaMapMarkerAlt/>
     {location}
-  </p>
-  <p className={css.info}>
-    <FaUserAlt className={css.icon}/>
+  </Info>
+  <Info>
+    <FaUserAlt/>
     {speaker}
-  </p>
-  <p className={css.info}>
-    <FaCalendarAlt className={css.icon}/>
+  </Info>
+  <Info>
+    <FaCalendarAlt/>
     {formattedDataStart}
-  </p>
-  <p className={css.info}>
-    <FaClock className={css.icon}/>
+  </Info>
+  <Info>
+    <FaClock/>
     {duration}
-  </p>
-  <span className={`${css.chip} ${css[type]}`}>{type}</span>
-</div>
+  </Info>
+  <Chip eventType={type}>{type}</Chip>
+</Card>
 )
 }
+
+// className={`${css.chip} ${css[type]}`
 
 EventCard.propTypes = {
   name: PropTypes.string.isRequired,
